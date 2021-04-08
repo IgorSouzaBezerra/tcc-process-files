@@ -22,6 +22,7 @@ namespace ProcessFile.API.Infra.Repositories
             var control = await _context.ColumnControls
                 .Where(x => x.Company.ToLower() == company.ToLower())
                 .AsNoTracking()
+                .OrderBy(x => x.ColumnPosition)
                 .ToListAsync();
 
             return control;
