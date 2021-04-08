@@ -86,4 +86,6 @@ C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\obj\Debug\net5.0\Process
 C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\bin\Debug\net5.0\Canducci.Pagination.dll
 C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\bin\Debug\net5.0\Npgsql.dll
+C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\igorb\source\repos\ProcessFile\ProcessFile.API\obj\Debug\net5.0\ProcessFile.API.csprojAssemblyReference.cache

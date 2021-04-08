@@ -9,16 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 using ProcessFile.API.Infra.Context;
-using ProcessFile.API.Infra.Interfaces;
-using ProcessFile.API.Infra.Repositories;
 using ProcessFile.API.Job;
-using ProcessFile.API.Providers.implementations;
-using ProcessFile.API.Providers.Interface;
-using ProcessFile.API.Services.Interfaces;
-using ProcessFile.API.Services.Services;
-using ProcessFile.API.Token;
 using System;
+using System.Data.Common;
 using System.Text;
 
 namespace ProcessFile.API
@@ -32,6 +27,7 @@ namespace ProcessFile.API
 
         public IConfiguration Configuration { get; }
 
+        public DbConnection DbConnection => new NpgsqlConnection(Configuration.GetConnectionString("ConnectionDefaultPG"));
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -50,7 +46,23 @@ namespace ProcessFile.API
                 .ReferenceLoopHandling.Ignore
             );
 
-            
+            /*
+             * MSSQL
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:ConnectionDefault"])
+            );
+            */
+
+            /*
+             * PG
+             */
+              services.AddDbContext<ApplicationContext>(options => {
+                options.UseNpgsql(
+                    DbConnection,
+                    assembly => assembly.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
+              });
+
+
             var secretKey = Configuration["Jwt:Key"];
             services.AddAuthentication(x =>
             {
@@ -70,25 +82,7 @@ namespace ProcessFile.API
                 };
             });
 
-
-            services.AddDbContext<ApplicationContext>(options => 
-                options.UseSqlServer(Configuration["ConnectionStrings:ConnectionDefault"])
-            );
-            services.AddScoped<IColumnControlService, ColumnControlService>();
-            services.AddScoped<IColumnControlRepository, ColumnControlRepository>();
-            services.AddScoped<IProcessService, ProcessService>();
-            services.AddScoped<IProcessRepository, ProcessRepository>();
-            services.AddScoped<IFileService, FileService>();
-            services.AddScoped<ISulamericaService, SulamericaService>();
-            services.AddScoped<ISulamericaRepository, SulamericaRepository>();
-            services.AddScoped<IUnimedService, UnimedService>();
-            services.AddScoped<IUnimedRepository, UnimedRepository>();
-            services.AddScoped<IJobEventService, JobEventService>();
-            services.AddScoped<IJobEventRepository, JobEventRepository>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IHash, Hash>();
-            services.AddScoped<ITokenGenerator, TokenGenerator>();
+            DependencyInjection.Register(services);
 
             services.AddHangfire(options =>
             {
