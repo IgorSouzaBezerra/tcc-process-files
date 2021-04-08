@@ -56,11 +56,11 @@ namespace ProcessFile.API
             /*
              * PG
              */
-              services.AddDbContext<ApplicationContext>(options => {
-                options.UseNpgsql(
-                    DbConnection,
-                    assembly => assembly.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
-              });
+            services.AddDbContext<ApplicationContext>(options => {
+            options.UseNpgsql(
+                DbConnection,
+                assembly => assembly.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
+            });
 
 
             var secretKey = Configuration["Jwt:Key"];
