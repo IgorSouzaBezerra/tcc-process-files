@@ -56,6 +56,7 @@ namespace ProcessFile.API
             /*
              * PG
              */
+            Console.WriteLine("Conectando no banco dados");
             services.AddDbContext<ApplicationContext>(options => {
             options.UseNpgsql(
                 DbConnection,
