@@ -139,11 +139,11 @@ namespace ProcessFile.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProcessFile.API v1"));
 
                 app.UseHangfireDashboard();
-                RecurringJob.AddOrUpdate(() => JobEMail.Execute(""), Cron.Minutely);
+                RecurringJob.AddOrUpdate(() => JobEMail.Execute(@"http://localhost:5000"), Cron.Minutely);
             } else
             {
                 app.UseHangfireDashboard();
-                RecurringJob.AddOrUpdate(() => JobEMail.Execute(""), Cron.Minutely);
+                RecurringJob.AddOrUpdate(() => JobEMail.Execute(@"https://tcc-process-files.herokuapp.com"), Cron.Minutely);
             }
 
             app.UseRouting();
