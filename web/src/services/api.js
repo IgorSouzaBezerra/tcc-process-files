@@ -2,7 +2,7 @@ import axios from 'axios';
 import { verify } from 'jsonwebtoken';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'https://tcc-process-files.herokuapp.com/',
 });
 
 const token = sessionStorage.getItem('@TOKEN');
