@@ -125,7 +125,7 @@ namespace ProcessFile.API.Services.Services
         public decimal InsertComma(string str)
         {
             int size = str.Length;
-            string strFormat = str.Insert(size - 2, ",");
+            string strFormat = str.Insert(size - 2, ".");
             Console.WriteLine("strFormat: " + strFormat);
             decimal strFormatDecimal = decimal.Parse(strFormat);
             Console.WriteLine("strFormatDecimal: " + strFormatDecimal);
