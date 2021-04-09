@@ -9,10 +9,10 @@ namespace ProcessFile.API.Job.Services
 {
     public class JobReadingEmailService
     {
-        public static async void Reading()
+        public static async void Reading(string url)
         {
             Http http = new Http();
-            var jobId = await http.PostJob();
+            var jobId = await http.PostJob(url);
 
             using (ImapClient client = new ImapClient("outlook.office365.com", 993, "beneficiofaber@outlook.com", "Faber@123", AuthMethod.Login, true))
             {
@@ -38,12 +38,12 @@ namespace ProcessFile.API.Job.Services
                         writer.Write(allBytes);
                         writer.Close();
 
-                        await Http.PostFile(fileName, item.Subject);
+                        await Http.PostFile(url, fileName, item.Subject);
                     }
                 }
             }
 
-            await Http.UpdateJob(jobId);
+            await Http.UpdateJob(url, jobId);
         }
     }
 }

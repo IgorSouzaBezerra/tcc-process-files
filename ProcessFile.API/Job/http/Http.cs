@@ -7,13 +7,13 @@ namespace ProcessFile.API.Job.http
 {
     public class Http
     {
-        public async Task<long> PostJob()
+        public async Task<long> PostJob(string url)
         {
             HttpClient client = new HttpClient();
 
-            string url = @"https://tcc-process-files.herokuapp.com/JobEvent";
+            string urlPost = url + "/JobEvent";
 
-            HttpResponseMessage response = await client.PostAsync(url, null);
+            HttpResponseMessage response = await client.PostAsync(urlPost, null);
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
@@ -21,27 +21,28 @@ namespace ProcessFile.API.Job.http
             return jobEntity.Id;
         }
 
-        public static async Task UpdateJob(long id)
+        public static async Task UpdateJob(string url, long id)
         {
             HttpClient client = new HttpClient();
 
-            string url = @"https://tcc-process-files.herokuapp.com/JobEvent/" + id;
+            string urlPost = url + "/JobEvent/" + id;
 
-            HttpResponseMessage response = await client.PostAsync(url, null);
+            HttpResponseMessage response = await client.PostAsync(urlPost, null);
             response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
+
+            //string responseBody = await response.Content.ReadAsStringAsync();
         }
 
-        public static async Task PostFile(string filename, string subject)
+        public static async Task PostFile(string url, string filename, string subject)
         {
             HttpClient client = new HttpClient();
 
-            string url = @"https://tcc-process-files.herokuapp.com/Files?filename=" + filename + "&subject=" + subject;
+            string urlPost = url + "/Files?filename=" + filename + "&subject=" + subject;
 
-            HttpResponseMessage response = await client.PostAsync(url, null);
+            HttpResponseMessage response = await client.PostAsync(urlPost, null);
             response.EnsureSuccessStatusCode();
 
-            string responseBody = await response.Content.ReadAsStringAsync();
+            //string responseBody = await response.Content.ReadAsStringAsync();
         }
     }
 }

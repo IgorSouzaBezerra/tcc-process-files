@@ -137,6 +137,13 @@ namespace ProcessFile.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProcessFile.API v1"));
+
+                app.UseHangfireDashboard();
+                RecurringJob.AddOrUpdate(() => JobEMail.Execute(""), Cron.Minutely);
+            } else
+            {
+                app.UseHangfireDashboard();
+                RecurringJob.AddOrUpdate(() => JobEMail.Execute(""), Cron.Minutely);
             }
 
             app.UseRouting();
@@ -152,8 +159,7 @@ namespace ProcessFile.API
                 endpoints.MapControllers();
             });
 
-            app.UseHangfireDashboard();
-            RecurringJob.AddOrUpdate(() => JobEMail.Execute(), Cron.Minutely);
+
         }
     }
 }
