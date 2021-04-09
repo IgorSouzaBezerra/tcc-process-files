@@ -69,6 +69,9 @@ namespace ProcessFile.API.Services.Services
 
                 if (subject.ToUpper().Contains("SULAMERICA"))
                 {
+                    Console.WriteLine("Valor Inicial: " + entityIndex[6]);
+                    Console.WriteLine("Valor Inicial: " + InsertComma(entityIndex[6]));
+
                     Sulamerica obj = new Sulamerica
                     {
                         Sequencia = entityIndex[0],
