@@ -70,7 +70,6 @@ namespace ProcessFile.API.Services.Services
                 if (subject.ToUpper().Contains("SULAMERICA"))
                 {
                     Console.WriteLine("Valor Inicial: " + entityIndex[6]);
-                    Console.WriteLine("Valor Inicial: " + InsertComma(entityIndex[6]));
 
                     Sulamerica obj = new Sulamerica
                     {
@@ -126,7 +125,11 @@ namespace ProcessFile.API.Services.Services
         public decimal InsertComma(string str)
         {
             int size = str.Length;
-            return decimal.Parse(str.Insert(size - 2, ","));
+            string strFormat = str.Insert(size - 2, ",");
+            Console.WriteLine("strFormat: " + strFormat);
+            decimal strFormatDecimal = decimal.Parse(strFormat);
+            Console.WriteLine("strFormatDecimal: " + strFormatDecimal);
+            return strFormatDecimal;
         }
     }
 }
