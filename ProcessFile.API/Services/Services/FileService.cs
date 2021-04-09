@@ -79,7 +79,7 @@ namespace ProcessFile.API.Services.Services
                         CPF = entityIndex[3],
                         DataRegistro = entityIndex[4],
                         Mais = entityIndex[5],
-                        Valor = InsertComma(entityIndex[6]),
+                        Valor = InsertDot(entityIndex[6]),
                         CodigoAleatorio = entityIndex[7],
                         Nascimento = entityIndex[8],
                         CNPJ = entityIndex[9],
@@ -103,7 +103,7 @@ namespace ProcessFile.API.Services.Services
                         CodigoDependenteSistema = entityIndex[3],
                         Nome = entityIndex[4],
                         Crm = entityIndex[5],
-                        ValorDespesa = decimal.Parse(entityIndex[6]),
+                        ValorDespesa = InsertDot(entityIndex[6]),
                         Amb = entityIndex[7],
                         ControleUnimedLotacao = entityIndex[8],
                         ControleUnimedAcomodacao = entityIndex[9],
@@ -122,7 +122,7 @@ namespace ProcessFile.API.Services.Services
             return list;
         }
 
-        public decimal InsertComma(string str)
+        public decimal InsertDot(string str)
         {
             int size = str.Length;
             string strFormat = str.Insert(size - 2, ".");
