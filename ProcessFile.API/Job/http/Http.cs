@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using ProcessFile.API.Domain.Entities;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -12,7 +11,7 @@ namespace ProcessFile.API.Job.http
         {
             HttpClient client = new HttpClient();
 
-            string url = @"http://localhost:5000/JobEvent";
+            string url = @"https://tcc-process-files.herokuapp.com/JobEvent";
 
             HttpResponseMessage response = await client.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
@@ -26,7 +25,7 @@ namespace ProcessFile.API.Job.http
         {
             HttpClient client = new HttpClient();
 
-            string url = @"http://localhost:5000/JobEvent/" + id;
+            string url = @"https://tcc-process-files.herokuapp.com/JobEvent/" + id;
 
             HttpResponseMessage response = await client.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
@@ -37,7 +36,7 @@ namespace ProcessFile.API.Job.http
         {
             HttpClient client = new HttpClient();
 
-            string url = @"http://localhost:5000/Files?filename=" + filename + "&subject=" + subject;
+            string url = @"https://tcc-process-files.herokuapp.com/Files?filename=" + filename + "&subject=" + subject;
 
             HttpResponseMessage response = await client.PostAsync(url, null);
             response.EnsureSuccessStatusCode();
