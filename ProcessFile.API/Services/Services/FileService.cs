@@ -69,8 +69,6 @@ namespace ProcessFile.API.Services.Services
 
                 if (subject.ToUpper().Contains("SULAMERICA"))
                 {
-                    Console.WriteLine("Valor Inicial: " + entityIndex[6]);
-
                     Sulamerica obj = new Sulamerica
                     {
                         Sequencia = entityIndex[0],
@@ -126,9 +124,7 @@ namespace ProcessFile.API.Services.Services
         {
             int size = str.Length;
             string strFormat = str.Insert(size - 2, ".");
-            Console.WriteLine("strFormat: " + strFormat);
             decimal strFormatDecimal = decimal.Parse(strFormat);
-            Console.WriteLine("strFormatDecimal: " + strFormatDecimal);
             return strFormatDecimal;
         }
     }
