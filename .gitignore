@@ -13,6 +13,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+ProcessFile.API/bin/
+ProcessFile.API/Files/
+ProcessFile.API/obj/
+
 # Mono auto generated files
 mono_crash.*
 
