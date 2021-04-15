@@ -1,3 +1,4 @@
+using AutoMapper;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,8 +11,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Npgsql;
+using ProcessFile.API.Domain.Entities;
 using ProcessFile.API.Infra.Context;
 using ProcessFile.API.Job;
+using ProcessFile.API.Services.DTO;
+using ProcessFile.API.ViewModel;
 using System;
 using System.Data.Common;
 using System.Text;
@@ -46,6 +50,14 @@ namespace ProcessFile.API
                 .ReferenceLoopHandling.Ignore
             );
 
+            var autoMapperConfig = new MapperConfiguration(configuration => 
+            {
+                configuration.CreateMap<CreateUserViewModel, UserDTO>().ReverseMap();
+                configuration.CreateMap<UserDTO, User>().ReverseMap();
+                
+            });
+            services.AddSingleton(autoMapperConfig.CreateMapper());
+
             /*
              * MSSQL
             services.AddDbContext<ApplicationContext>(options =>
@@ -62,7 +74,6 @@ namespace ProcessFile.API
                 DbConnection,
                 assembly => assembly.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName));
             });
-
 
             var secretKey = Configuration["Jwt:Key"];
             services.AddAuthentication(x =>
