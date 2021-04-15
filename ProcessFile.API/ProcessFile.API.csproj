@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Canducci.Pagination" Version="2.1.2" />
     <PackageReference Include="Hangfire" Version="1.7.19" />
     <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
