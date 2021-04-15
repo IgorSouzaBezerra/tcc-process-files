@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProcessFile.API.Domain.Entities;
 using ProcessFile.API.Services.DTO;
 using ProcessFile.API.Services.Interfaces;
 using ProcessFile.API.ViewModel;
