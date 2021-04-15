@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProcessFile.API.Domain.Entities;
+using ProcessFile.API.Services.DTO;
 using ProcessFile.API.Services.Interfaces;
+using ProcessFile.API.ViewModel;
 using System.Threading.Tasks;
 
 namespace ProcessFile.API.Controllers
@@ -11,11 +14,13 @@ namespace ProcessFile.API.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,9 +39,10 @@ namespace ProcessFile.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] User user)
-        {
-            var userCreate = await _userService.Create(user);
+        public async Task<IActionResult> Create([FromBody] CreateUserViewModel userViewModel)
+        {   
+            var userDTO = _mapper.Map<UserDTO>(userViewModel);
+            var userCreate = await _userService.Create(userDTO);
             return Ok(userCreate);
         }
     }

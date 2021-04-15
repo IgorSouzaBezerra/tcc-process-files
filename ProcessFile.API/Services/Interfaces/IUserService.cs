@@ -1,4 +1,4 @@
-﻿using ProcessFile.API.Domain.Entities;
+﻿using ProcessFile.API.Services.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,11 +6,11 @@ namespace ProcessFile.API.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<User> Create(User user);
-        Task<User> Update(User user);
+        Task<UserDTO> Create(UserDTO userDTO);
+        Task<UserDTO> Update(UserDTO userDTO);
         Task Remove(long id);
-        Task<User> Get(long id);
-        Task<List<User>> Get();
-        Task<User> FindByEmail(string email);
+        Task<UserDTO> Get(long id);
+        Task<List<UserDTO>> Get();
+        Task<UserDTO> FindByEmail(string email);
     }
 }
