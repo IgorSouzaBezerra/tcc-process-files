@@ -64,5 +64,13 @@ namespace ProcessFile.API.Controllers
             var userUpdated = await _userService.Update(userDTO);
             return Ok(userUpdated);
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await _userService.Remove(id);
+            return NoContent();
+        }
     }
 }
