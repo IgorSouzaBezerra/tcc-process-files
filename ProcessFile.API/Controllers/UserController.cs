@@ -30,12 +30,9 @@ namespace ProcessFile.API.Controllers
             try
             {
                 var users = await _userService.Get();
-
                 if (users.Count <= 0)
-                {
                     return NoContent();
-                }
-
+                
                 return Ok(users);
             }
             catch (ServiceException ex)
@@ -55,12 +52,9 @@ namespace ProcessFile.API.Controllers
             try
             {
                 var user = await _userService.Get(id);
-
                 if (user == null)
-                {
                     return NoContent();
-                }
-
+                
                 return Ok(user);
             }
             catch (ServiceException ex)
