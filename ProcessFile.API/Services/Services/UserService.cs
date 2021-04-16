@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProcessFile.API.Domain.Entities;
+using ProcessFile.API.Error;
 using ProcessFile.API.Infra.Interfaces;
 using ProcessFile.API.Providers.Interface;
 using ProcessFile.API.Services.DTO;
@@ -49,8 +50,14 @@ namespace ProcessFile.API.Services.Services
 
         public async Task<UserDTO> Update(UserDTO userDTO)
         {
+            var userExists = await _userRepository.Get(userDTO.Id);
+
+            if (userExists == null)
+                throw new ServiceException("Não foi encontrado nenhum usuário com ID informado!");
+
             var user = _mapper.Map<User>(userDTO);
             user.Password = _hash.GenerateHash(user.Password);
+            
             var userUpdate = await _userRepository.Update(user);
             return _mapper.Map<UserDTO>(userUpdate);
         }
