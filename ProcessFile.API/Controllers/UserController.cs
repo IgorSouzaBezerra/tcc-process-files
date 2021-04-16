@@ -26,6 +26,12 @@ namespace ProcessFile.API.Controllers
         public async Task<IActionResult> Get()
         {
             var users = await _userService.Get();
+
+            if (users.Count <= 0)
+            {
+                return NoContent();
+            }
+
             return Ok(users);
         }
 
@@ -34,6 +40,12 @@ namespace ProcessFile.API.Controllers
         public async Task<IActionResult> GetUser(long id)
         {
             var user = await _userService.Get(id);
+
+            if (user == null)
+            {
+                return NoContent();
+            }
+
             return Ok(user);
         }
 
