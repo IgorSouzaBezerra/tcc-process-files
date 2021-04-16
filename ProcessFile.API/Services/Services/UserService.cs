@@ -50,6 +50,7 @@ namespace ProcessFile.API.Services.Services
         public async Task<UserDTO> Update(UserDTO userDTO)
         {
             var user = _mapper.Map<User>(userDTO);
+            user.Password = _hash.GenerateHash(user.Password);
             var userUpdate = await _userRepository.Update(user);
             return _mapper.Map<UserDTO>(userUpdate);
         }

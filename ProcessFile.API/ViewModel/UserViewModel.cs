@@ -3,8 +3,10 @@ using ProcessFile.API.Domain.Enum;
 
 namespace ProcessFile.API.ViewModel
 {
-    public class CreateUserViewModel
+    public class UserViewModel
     {
+        public long Id { get; set; }
+        
         [Required(ErrorMessage = "O nome não pode ser vazio.")]
         [MinLength(3, ErrorMessage = "O nome deve ter no mínimo 3 caracteres.")]
         [MaxLength(80, ErrorMessage = "O nome deve ter no máximo 80 caracteres.")]

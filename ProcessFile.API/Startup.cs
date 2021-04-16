@@ -52,7 +52,7 @@ namespace ProcessFile.API
 
             var autoMapperConfig = new MapperConfiguration(configuration => 
             {
-                configuration.CreateMap<CreateUserViewModel, UserDTO>().ReverseMap();
+                configuration.CreateMap<UserViewModel, UserDTO>().ReverseMap();
                 configuration.CreateMap<UserDTO, User>().ReverseMap();
                 
             });

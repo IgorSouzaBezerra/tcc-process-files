@@ -38,11 +38,19 @@ namespace ProcessFile.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserViewModel userViewModel)
+        public async Task<IActionResult> Create([FromBody] UserViewModel userViewModel)
         {   
             var userDTO = _mapper.Map<UserDTO>(userViewModel);
             var userCreate = await _userService.Create(userDTO);
             return Ok(userCreate);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UserViewModel userViewModel)
+        {
+            var userDTO = _mapper.Map<UserDTO>(userViewModel);
+            var userUpdated = await _userService.Update(userDTO);
+            return Ok(userUpdated);
         }
     }
 }
