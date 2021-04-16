@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProcessFile.API.Error;
 using ProcessFile.API.Services.DTO;
 using ProcessFile.API.Services.Interfaces;
 using ProcessFile.API.ViewModel;
+using System;
 using System.Threading.Tasks;
 
 namespace ProcessFile.API.Controllers
@@ -24,53 +26,109 @@ namespace ProcessFile.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Get()
-        {
-            var users = await _userService.Get();
-
-            if (users.Count <= 0)
+        { 
+            try
             {
-                return NoContent();
-            }
+                var users = await _userService.Get();
 
-            return Ok(users);
+                if (users.Count <= 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(users);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Internal Error");
+            }
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetUser(long id)
         {
-            var user = await _userService.Get(id);
-
-            if (user == null)
+            try
             {
-                return NoContent();
-            }
+                var user = await _userService.Get(id);
 
-            return Ok(user);
+                if (user == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(user);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Internal Error");
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserViewModel userViewModel)
-        {   
-            var userDTO = _mapper.Map<UserDTO>(userViewModel);
-            var userCreate = await _userService.Create(userDTO);
-            return Ok(userCreate);
+        {
+            try
+            {
+                var userDTO = _mapper.Map<UserDTO>(userViewModel);
+                var userCreate = await _userService.Create(userDTO);
+                return Ok(userCreate);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Internal Error");
+            }
+
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UserViewModel userViewModel)
         {
-            var userDTO = _mapper.Map<UserDTO>(userViewModel);
-            var userUpdated = await _userService.Update(userDTO);
-            return Ok(userUpdated);
+            try
+            {
+                var userDTO = _mapper.Map<UserDTO>(userViewModel);
+                var userUpdated = await _userService.Update(userDTO);
+                return Ok(userUpdated);
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Internal Error");
+            }
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
-            await _userService.Remove(id);
-            return NoContent();
+            try
+            {
+                await _userService.Remove(id);
+                return NoContent();
+            }
+            catch (ServiceException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Server Internal Error");
+            }
         }
     }
 }
