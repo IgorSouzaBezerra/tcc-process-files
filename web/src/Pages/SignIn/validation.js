@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 
 export const schemaLogin = yup.object().shape({
     email: yup.string().required("O e-mail é obrigatório.").email("O e-mail informado não é válido"),
