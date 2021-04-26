@@ -55,5 +55,15 @@ namespace ProcessFile.API.Infra.Repositories
 
             return process;
         }
+
+        public async Task<List<Process>> GetFinished()
+        {
+            var process = await _context.Set<Process>()
+                .AsNoTracking()
+                .Where(x => x.ProcesStatus == ProcessStatus.Finished)
+                .ToListAsync();
+
+            return process;
+        }
     }
 }

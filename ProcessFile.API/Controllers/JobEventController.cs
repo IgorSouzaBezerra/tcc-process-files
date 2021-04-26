@@ -37,5 +37,13 @@ namespace ProcessFile.API.Controllers
             var jobs = await _jobService.GetAll(page);
             return Ok(jobs);
         }
+
+        [HttpGet]
+        [Route("getQtdJob")]
+        public async Task<IActionResult> GetQtdJob()
+        {
+            var jobs = await _jobService.GetQtdJob();
+            return Ok(jobs);
+        }
     }
 }

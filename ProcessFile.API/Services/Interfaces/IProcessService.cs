@@ -11,5 +11,6 @@ namespace ProcessFile.API.Services.Interfaces
         Task<Process> Get(long id);
         Task<Process> UpdateStatus(Process entity);
         Task<List<Process>> GetPending();
+        Task<List<Process>> GetFinished();
     }
 }

@@ -34,6 +34,14 @@ namespace ProcessFile.API.Controllers
         }
 
         [HttpGet]
+        [Route("getFinished")]
+        public async Task<IActionResult> GetFinished()
+        {
+            var process = await _processService.GetFinished();
+            return Ok(process);
+        }
+
+        [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetRelations(long id)
         {

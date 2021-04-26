@@ -39,6 +39,12 @@ namespace ProcessFile.API.Services.Services
             return process;
         }
 
+        public async Task<List<Process>> GetFinished()
+        {
+            var process = await _processRepository.GetFinished();
+            return process;
+        }
+
         public async Task<Process> UpdateStatus(Process entity)
         {
             entity.ProcesStatus = ProcessStatus.Finished;

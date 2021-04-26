@@ -8,14 +8,14 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const history = useHistory();
-    const[token, setToken] = useState("");
+    const[user, setUser] = useState("");
 
     useEffect(() => {
-        const storagedToken = sessionStorage.getItem('@TOKEN');
+        const storagedUser = JSON.parse(sessionStorage.getItem('@USER'));
 
-        if (storagedToken) {
-            setToken(storagedToken);
-            api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+        if (storagedUser) {
+            setUser(storagedUser);
+            api.defaults.headers.Authorization = `Bearer ${storagedUser.token}`;
         }
     }, []);
 
@@ -25,11 +25,11 @@ export const AuthProvider = ({ children }) => {
                 email,
                 password
             });
-            
-            setToken(response.data);
-            api.defaults.headers.Authorization = `Bearer ${response.data}`;
 
-            sessionStorage.setItem('@TOKEN', response.data);
+            setUser(response.data);
+            api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
+
+            sessionStorage.setItem('@USER', JSON.stringify(response.data));
         } catch(err) {
             if (err.response?.data)
                 Error(err.response.data);
@@ -39,13 +39,13 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const Logout = useCallback(() => {
-        setToken(null);
+        setUser(null);
         history.push('/');
-        sessionStorage.removeItem('@TOKEN');
+        sessionStorage.removeItem('@USER');
     }, [history]);
 
     return (
-      <AuthContext.Provider value={{ signed: Boolean(token), Login, Logout }}>
+      <AuthContext.Provider value={{ signed: Boolean(user), user, Login, Logout }}>
         {children}
       </AuthContext.Provider>
     );

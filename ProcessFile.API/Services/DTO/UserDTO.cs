@@ -1,4 +1,5 @@
-using System.Text.Json.Serialization;
+
+using Newtonsoft.Json;
 using ProcessFile.API.Domain.Enum;
 
 namespace ProcessFile.API.Services.DTO
@@ -11,31 +12,44 @@ namespace ProcessFile.API.Services.DTO
 
         [JsonIgnore]
         public string Password { get; set; }
+
+        [JsonIgnore]
+        public string OldPassword { get; set; }
+
         public string Avatar { get; set; }
         public UserStatus UserStatus { get; set; }
 
         public UserDTO()
         {}
 
-        public UserDTO(long id, string name, string email, string password, UserStatus userStatus)
+        public UserDTO(long id, string name, string email, string password, string oldPassword)
         {
             this.Id = id;
             this.Name = name;
             this.Email = email;
             this.Password = password;
-            this.UserStatus = userStatus;
-
+            this.OldPassword = oldPassword;
         }
 
-        public UserDTO(long id, string name, string email, string password, string avatar, UserStatus userStatus)
+        public UserDTO(long id, string name, string email, string password, string oldPassword, UserStatus userStatus)
         {
             this.Id = id;
             this.Name = name;
             this.Email = email;
             this.Password = password;
+            this.OldPassword = oldPassword;
+            this.UserStatus = userStatus;
+        }
+
+        public UserDTO(long id, string name, string email, string password, string oldPassword, string avatar, UserStatus userStatus)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Email = email;
+            this.Password = password;
+            this.OldPassword = oldPassword;
             this.Avatar = avatar;
             this.UserStatus = userStatus;
-
         }
     }
 }

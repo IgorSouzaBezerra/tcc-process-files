@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
-using ProcessFile.API.Domain.Enum;
 
 namespace ProcessFile.API.ViewModel
 {
     public class UserViewModel
     {
         public long Id { get; set; }
-        
+
         [Required(ErrorMessage = "O nome não pode ser vazio.")]
         [MinLength(3, ErrorMessage = "O nome deve ter no mínimo 3 caracteres.")]
         [MaxLength(80, ErrorMessage = "O nome deve ter no máximo 80 caracteres.")]
@@ -19,10 +18,20 @@ namespace ProcessFile.API.ViewModel
         public string Email { get; set; }
 
         [Required(ErrorMessage = "A senha não pode ser vazia.")]
-        [MinLength(6, ErrorMessage = "A senha deve ter no mínimo 10 caracteres.")]
+        [MinLength(3, ErrorMessage = "A senha deve ter no mínimo 3 caracteres.")]
+        [MaxLength(80, ErrorMessage = "A senha deve ter no máximo 80 caracteres.")]
+        public string OldPassword { get; set; }
+
+        [Required(ErrorMessage = "A senha não pode ser vazia.")]
+        [MinLength(3, ErrorMessage = "A senha deve ter no mínimo 3 caracteres.")]
         [MaxLength(80, ErrorMessage = "A senha deve ter no máximo 80 caracteres.")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "A senha não pode ser vazia.")]
+        [MinLength(3, ErrorMessage = "A senha deve ter no mínimo 3 caracteres.")]
+        [MaxLength(80, ErrorMessage = "A senha deve ter no máximo 80 caracteres.")]
+        [Compare("Password", ErrorMessage = "As senhas devem corresponde.")]
+        public string ConfirmPassword { get; set; }
         public string Avatar { get; set; }
-        public UserStatus UserStatus { get; set; }
     }
 }

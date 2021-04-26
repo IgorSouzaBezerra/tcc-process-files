@@ -11,5 +11,6 @@ namespace ProcessFile.API.Services.Interfaces
         Task<List<JobEvent>> Get();
         Task<JobEvent> Get(long id);
         Task<dynamic> GetAll(int page);
+        Task<int> GetQtdJob();
     }
 }

@@ -9,5 +9,6 @@ namespace ProcessFile.API.Infra.Interfaces
         Task<Process> CreateProcess(string company);
         Task<Process> FindProcess(long id);
         Task<List<Process>> GetPending();
+        Task<List<Process>> GetFinished();
     }
 }

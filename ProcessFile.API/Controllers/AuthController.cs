@@ -34,7 +34,13 @@ namespace ProcessFile.API.Controllers
 
             if (_hash.CompareHash(login.Password, user.Password))
             {
-                return Ok(_tokenGenerator.GenerateToken());
+                return Ok(new
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Email,
+                    Token = _tokenGenerator.GenerateToken(),
+                });
             }
 
             return BadRequest("Email ou senha inválido.");

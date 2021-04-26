@@ -54,5 +54,11 @@ namespace ProcessFile.API.Infra.Repositories
                 .ToPaginatedRestAsync(page, 15);
             return jobs;
         }
+
+        public async Task<int> GetQtdJob()
+        {
+            var jobs = await _context.JobEvents.AsNoTracking().ToListAsync();
+            return jobs.Count;
+        }
     }
 }

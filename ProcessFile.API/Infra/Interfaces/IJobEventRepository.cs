@@ -9,5 +9,6 @@ namespace ProcessFile.API.Infra.Interfaces
         Task<JobEvent> Create();
         Task<JobEvent> CompleteJob(long id);
         Task<dynamic> GetAll(int page);
+        Task<int> GetQtdJob();
     }
 }

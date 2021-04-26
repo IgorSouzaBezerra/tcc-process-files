@@ -44,5 +44,11 @@ namespace ProcessFile.API.Services.Services
             var jobs = await _jobRepository.GetAll(page);
             return jobs;
         }
+
+        public async Task<int> GetQtdJob()
+        {
+            var jobs = await _jobRepository.GetQtdJob();
+            return jobs;
+        }
     }
 }

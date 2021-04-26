@@ -55,6 +55,9 @@ namespace ProcessFile.API.Services.Services
             if (userExists == null)
                 throw new ServiceException("Não foi encontrado nenhum usuário com ID informado!");
 
+            if (!(_hash.CompareHash(userDTO.OldPassword, userExists.Password)))
+                throw new ServiceException("Senha antiga incorreta!");
+
             var user = _mapper.Map<User>(userDTO);
             user.Password = _hash.GenerateHash(user.Password);
             

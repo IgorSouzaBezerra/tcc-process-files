@@ -84,7 +84,6 @@ namespace ProcessFile.API.Controllers
             {
                 return StatusCode(500, "Server Internal Error");
             }
-
         }
 
         [HttpPut]
