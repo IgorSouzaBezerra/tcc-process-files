@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Container, ControlItem, Item, Chart } from './styles';
@@ -12,12 +12,15 @@ const Dash = () => {
     const[finished, setFinished] = useState(0);
     const[jobQtd, setJobQtd] = useState(0);
 
+    const pendingChart = useMemo(() => pending, [pending]);
+    const finishedChart = useMemo(() => finished, [finished]);
+
     const data = {
         labels: ['Atividades Pendentes', 'Atividades Concluídas'],
         datasets: [
           {
             label: '# of Votes',
-            data: [pending, finished],
+            data: [pendingChart, finishedChart],
             backgroundColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
