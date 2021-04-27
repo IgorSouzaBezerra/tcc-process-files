@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Signin from '../pages/Signin';
+import SignIn from '../pages/SignIn';
 
 const OtherRoutes = () => {
     return (
         <Switch>
-            <Route path="/" exact component={Signin} />
+            <Route path="/" exact component={SignIn} />
             <Redirect from="*" to="/" />
         </Switch>
     );
