@@ -15,7 +15,7 @@ import { Container, ImgDiv, Form } from './styles';
 
 import { useAuth } from '../../context/auth';
 
-const SignIn = () => {
+const Signin = () => {
     const[loading, setLoading] = useState(false);
 
     const { Login } = useAuth();
@@ -45,4 +45,4 @@ const SignIn = () => {
     );
 }
 
-export default SignIn;
+export default Signin;
