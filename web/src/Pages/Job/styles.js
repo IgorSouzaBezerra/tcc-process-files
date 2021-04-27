@@ -33,7 +33,7 @@ export const Tr = styled.tr`
         background-color: #3498db;
     }
     &:nth-child(even) {
-        background-color: #5f5f5f;
+        background-color: ${props => props.theme.colors.div};
     }
 `;
 
