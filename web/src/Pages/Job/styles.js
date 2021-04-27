@@ -25,7 +25,7 @@ export const TableDiv = styled.table`
     font-size: 12px;
     border-collapse: collapse;
     width: 90%;
-    color: #FFFAFA;
+    color: ${props => props.theme.colors.text};
 `;
 
 export const Tr = styled.tr`
