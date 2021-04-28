@@ -71,9 +71,9 @@ const Dash = () => {
                     </Item>
                 </Link>
             </ControlItem>
-            <Chart>
-                <Pie data={data} />
-            </Chart>
+                <Chart>
+                    <Pie data={data} />
+                </Chart>
         </Container>
     );
 }
