@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { Container, ControlItem, Item, Chart } from './styles';
 
+import Menu from '../../components/Menu';
+
 import { Pie } from 'react-chartjs-2';
 
 import api from '../../services/api';
@@ -50,36 +52,39 @@ const Dash = () => {
     }, [loadQtdData]);
 
     return (
-        <Container>
-            <ControlItem>
-                <Link to="/process/getFinished">
-                    <Item>
-                        <span>Processos concluídos</span>
-                        <h3>{finished}</h3>
-                    </Item>
-                </Link>
-                <Link to="/process/getPending">
-                    <Item>
-                        <span>Processos pendentes</span>
-                        <h3>{pending}</h3>
-                    </Item>
-                </Link>
-                <Link to="/job">
-                    <Item>
-                        <span>Jobs processadas</span>
-                        <h3>{jobQtd}</h3>
-                    </Item>
-                </Link>
-            </ControlItem>
-            {pending === 0 && finished === 0 ? 
-                (null) 
-                : 
-                (<Chart>
-                    <Pie data={data} />
-                </Chart>)
-            }
-            
-        </Container>
+        <>
+            <Menu />
+            <Container>
+                <ControlItem>
+                    <Link to="/process/getFinished">
+                        <Item>
+                            <span>Processos concluídos</span>
+                            <h3>{finished}</h3>
+                        </Item>
+                    </Link>
+                    <Link to="/process/getPending">
+                        <Item>
+                            <span>Processos pendentes</span>
+                            <h3>{pending}</h3>
+                        </Item>
+                    </Link>
+                    <Link to="/job">
+                        <Item>
+                            <span>Jobs processadas</span>
+                            <h3>{jobQtd}</h3>
+                        </Item>
+                    </Link>
+                </ControlItem>
+                {pending === 0 && finished === 0 ? 
+                    (null) 
+                    : 
+                    (<Chart>
+                        <Pie data={data} />
+                    </Chart>)
+                }
+                
+            </Container>
+        </>
     );
 }
 
