@@ -11,6 +11,7 @@ import ColumnControl from '../pages/ColumnControl';
 import Job from '../pages/Job';
 
 import MyProfile from '../pages/MyProfile';
+import User from '../pages/User';
 
 const SignRoutes = () => {
     return (
@@ -25,6 +26,7 @@ const SignRoutes = () => {
             <Route path="/job" exact component={Job} />
 
             <Route path="/myprofile/:id" exact component={MyProfile} />
+            <Route path="/users" exact component={User} />
             <Redirect from="*" to="/" />
         </Switch>
     )
