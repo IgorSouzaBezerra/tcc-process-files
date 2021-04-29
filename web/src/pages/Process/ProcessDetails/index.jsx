@@ -26,6 +26,7 @@ const ProcessDetails = (props) => {
     const[date, setDate] = useState();
     const[sulamerica, setSulamerica] = useState([]);
     const[unimed, setUnimed] = useState([]);
+    const[status, setStatus] = useState(0);
     const[totalValue, setTotalValue] = useState(0);
 
     const[loading, setLoading] = useState(false);
@@ -62,6 +63,8 @@ const ProcessDetails = (props) => {
             const processId = props.match.params.id;
             const response = await api.get(`Process/${processId}`);
             
+            setStatus(response.data.procesStatus);
+
             setId(response.data.id);
             setCompany(response.data.title);
             setDate(response.data.startDate);
@@ -130,7 +133,11 @@ const ProcessDetails = (props) => {
                     </Warning>
                 
                 }
-            <ProcessOptions uid={id} />
+            {status === 0 ? 
+                (<ProcessOptions uid={id} />) : 
+                (null)
+            }
+            
         </>
     )
 }
