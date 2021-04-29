@@ -6,6 +6,8 @@ import Dash from '../pages/Dash';
 import Process from '../pages/Process';
 import ProcessDetails from '../pages/Process/ProcessDetails';
 
+import ColumnControl from '../pages/ColumnControl';
+
 import Job from '../pages/Job';
 
 import MyProfile from '../pages/MyProfile';
@@ -18,6 +20,8 @@ const SignRoutes = () => {
             <Route path="/process/:endpoint" exact component={Process} />
             <Route path="/process/:company/:id" exact component={ProcessDetails} />
             
+            <Route path="/column-controls" exact component={ColumnControl} />
+
             <Route path="/job" exact component={Job} />
 
             <Route path="/myprofile/:id" exact component={MyProfile} />
