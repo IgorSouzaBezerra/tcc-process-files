@@ -3,6 +3,7 @@
     public enum JobStatus
     {
         Running,
+        Error,
         Finished
     }
 }
