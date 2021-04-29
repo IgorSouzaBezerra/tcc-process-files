@@ -6,6 +6,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { Link } from 'react-router-dom';
 
 import Options from '../../components/Options';
+import SubHeader from '../../components/SubHeader';
 
 import api from '../../services/api';
 import { Error } from '../../utils/toast';
@@ -45,7 +46,7 @@ const Process = (props) => {
   return (
     <>
         <Options active={true} url="/" />
-
+        <SubHeader title="Processos" />
         <Content>
           {loading ? 
             <ClipLoader css={cssspinner} />

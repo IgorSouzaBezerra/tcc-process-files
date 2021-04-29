@@ -6,6 +6,7 @@ import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
 import moment from 'moment';
 
 import Options from '../../components/Options';
+import SubHeader from '../../components/SubHeader';
 
 import api from '../../services/api';
 import { Error } from '../../utils/toast';
@@ -85,6 +86,7 @@ const Job = () => {
     return(
         <>
             <Options active={true} url="/" />
+            <SubHeader title="Jobs processadas" />
             {loading ? 
                 <ClipLoader css={cssspinner} /> 
                 : 
