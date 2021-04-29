@@ -71,9 +71,14 @@ const Dash = () => {
                     </Item>
                 </Link>
             </ControlItem>
-            <Chart>
-                <Pie data={data} />
-            </Chart>
+            {pending === 0 && finished === 0 ? 
+                (null) 
+                : 
+                (<Chart>
+                    <Pie data={data} />
+                </Chart>)
+            }
+            
         </Container>
     );
 }
