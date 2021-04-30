@@ -7,6 +7,7 @@ import Process from '../pages/Process';
 import ProcessDetails from '../pages/Process/ProcessDetails';
 
 import ColumnControl from '../pages/ColumnControl';
+import ColumnDetail from '../pages/ColumnControl/ColumnDetails';
 
 import Job from '../pages/Job';
 
@@ -22,6 +23,7 @@ const SignRoutes = () => {
             <Route path="/process/:company/:id" exact component={ProcessDetails} />
             
             <Route path="/column-controls" exact component={ColumnControl} />
+            <Route path="/column-controls/:company" exact component={ColumnDetail} />
 
             <Route path="/job" exact component={Job} />
 
