@@ -1,4 +1,0 @@
-bin/
-Files/*
-!Files/.gitkeep
-obj/

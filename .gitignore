@@ -14,7 +14,8 @@
 *.userprefs
 
 ProcessFile.API/bin/
-ProcessFile.API/Files/
+ProcessFile.API/Files/*
+ProcessFile.API/!Files/.gitkeep
 ProcessFile.API/obj/
 
 # Mono auto generated files
