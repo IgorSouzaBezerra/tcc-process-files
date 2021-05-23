@@ -101,7 +101,7 @@ namespace ProcessFile.API.Services.Services
                         CodigoDependenteSistema = entityIndex[3],
                         Nome = entityIndex[4],
                         Crm = entityIndex[5],
-                        ValorDespesa = InsertDot(entityIndex[6]),
+                        ValorDespesa = decimal.Parse(entityIndex[6]),
                         Amb = entityIndex[7],
                         ControleUnimedLotacao = entityIndex[8],
                         ControleUnimedAcomodacao = entityIndex[9],
@@ -123,7 +123,7 @@ namespace ProcessFile.API.Services.Services
         public decimal InsertDot(string str)
         {
             int size = str.Length;
-            string strFormat = str.Insert(size - 2, ".");
+            string strFormat = str.Insert(size - 2, ",");
             decimal strFormatDecimal = decimal.Parse(strFormat);
             return strFormatDecimal;
         }
