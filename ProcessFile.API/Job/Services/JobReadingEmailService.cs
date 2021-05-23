@@ -31,7 +31,7 @@ namespace ProcessFile.API.Job.Services
                         string[] nameFile = attachment.Name.Split(".");
                         string fileName = nameFile[0] + DateTime.Now.ToString("ddMMyyyyhhmmss") + "." + nameFile[1];
 
-                        string destinationFile = Directory.GetCurrentDirectory() + @"/Files/" + fileName;
+                        string destinationFile = Directory.GetCurrentDirectory() + fileName;
 
                         BinaryWriter writer = new BinaryWriter(new FileStream(destinationFile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None));
                         writer.Write(allBytes);

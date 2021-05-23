@@ -42,7 +42,7 @@ namespace ProcessFile.API.Services.Services
 
             List<ColumnControl> control = await _columnControlRepository.FindByCompany(company);
 
-            string[] lines = File.ReadAllLines(Directory.GetCurrentDirectory() + @"/Files/" + filename);
+            string[] lines = File.ReadAllLines(Directory.GetCurrentDirectory() + filename);
 
             Process process = await _processRepository.CreateProcess(company);
 
