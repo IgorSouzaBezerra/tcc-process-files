@@ -32,5 +32,11 @@ export const Container = styled.div`
       font-weight: 500;
       line-height: 3rem;
     }
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 `;
