@@ -4,14 +4,11 @@ import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 import { Error } from '../utils/toast';
 
-import { useSummary } from './useSummary';
-
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const history = useHistory();
     const[user, setUser] = useState("");
-    const { loadSummary } = useSummary();
 
     useEffect(() => {
         const storagedUser = JSON.parse(sessionStorage.getItem('@USER'));
@@ -34,14 +31,13 @@ export const AuthProvider = ({ children }) => {
 
             sessionStorage.setItem('@USER', JSON.stringify(response.data));
 
-            await loadSummary();
         } catch(err) {
             if (err.response?.data)
                 Error(err.response.data);
             else
                 Error("Server Internal Error.");
         }
-    }, [loadSummary]);
+    }, []);
 
     const Logout = useCallback(() => {
         setUser(null);
