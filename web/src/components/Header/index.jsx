@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Switch from 'react-switch';
 import { ThemeContext } from 'styled-components';
-import { shade } from 'polished';
 import { BsMoon } from 'react-icons/bs';
 import { IoSunny } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
