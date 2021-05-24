@@ -10,7 +10,7 @@ export const Container = styled.div`
 `;
 
 export const Chart = styled.div`
-    margin-top: 50px;
-    width: 350px;
-    height: 350px;
+    margin-top: 2rem;
+    width: 320px;
+    height: 320px;
 `;

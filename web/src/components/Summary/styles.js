@@ -7,6 +7,7 @@ export const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   color: #FFF;
+  margin-top: 2rem;
 
   a {
     text-decoration: none;
