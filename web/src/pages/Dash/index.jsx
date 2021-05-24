@@ -1,28 +1,25 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useMemo } from 'react';
 
-import { Container, ControlItem, Item, Chart } from './styles';
+import { Container, Chart } from './styles';
 
-import Menu from '../../components/Menu';
+import Summary from '../../components/Summary';
 
 import { Pie } from 'react-chartjs-2';
 
-import api from '../../services/api';
+import { useSummary } from '../../context/useSummary';
 
 const Dash = () => {
-    const[pending, setPending] = useState(0);
-    const[finished, setFinished] = useState(0);
-    const[jobQtd, setJobQtd] = useState(0);
+    const { pendings, finalized } = useSummary();
 
-    const pendingChart = useMemo(() => pending, [pending]);
-    const finishedChart = useMemo(() => finished, [finished]);
+    const pendingsMemo = useMemo(() => pendings, [pendings]);
+    const finalizedMemo = useMemo(() => finalized, [finalized]);
 
     const data = {
         labels: ['Atividades Pendentes', 'Atividades Concluídas'],
         datasets: [
           {
             label: '# of Votes',
-            data: [pendingChart, finishedChart],
+            data: [pendingsMemo, finalizedMemo],
             backgroundColor: [
               'rgba(255, 99, 132, 1)',
               'rgba(54, 162, 235, 1)',
@@ -36,53 +33,13 @@ const Dash = () => {
         ],
     };
 
-    const loadQtdData = useCallback(async () => {
-        const responsePending = await api.get(`Process/getPending`);
-        setPending(responsePending.data.length);
-
-        const responseFinished = await api.get(`Process/getFinished`);
-        setFinished(responseFinished.data.length);
-
-        const responseJob = await api.get(`JobEvent/getQtdJob`);
-        setJobQtd(responseJob.data);
-    }, []);
-
-    useEffect(() => {
-        loadQtdData();
-    }, [loadQtdData]);
-
     return (
         <>
-            <Menu />
+            <Summary />
             <Container>
-                <ControlItem>
-                    <Link to="/process/getFinished">
-                        <Item>
-                            <span>Processos concluídos</span>
-                            <h3>{finished}</h3>
-                        </Item>
-                    </Link>
-                    <Link to="/process/getPending">
-                        <Item>
-                            <span>Processos pendentes</span>
-                            <h3>{pending}</h3>
-                        </Item>
-                    </Link>
-                    <Link to="/job">
-                        <Item>
-                            <span>Jobs processadas</span>
-                            <h3>{jobQtd}</h3>
-                        </Item>
-                    </Link>
-                </ControlItem>
-                {pending === 0 && finished === 0 ? 
-                    (null) 
-                    : 
-                    (<Chart>
-                        <Pie data={data} />
-                    </Chart>)
-                }
-                
+               <Chart>
+                    <Pie data={data} />
+                </Chart>
             </Container>
         </>
     );

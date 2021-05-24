@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 import { Container, Options, SwitchOptions } from './styles';
 
-import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/useAuth';
 
 import Avatar from '../../assets/avatar.jpg';
 

@@ -13,7 +13,8 @@ import Header from './components/Header';
 import GlobalStyles from './styles/global';
 
 import Routes from './routes';
-import { AuthProvider } from './context/auth';
+import { AuthProvider } from './context/useAuth';
+import { SummaryProvider } from './context/useSummary';
 
 const App = () => {
     const[theme, setTheme] = usePersistedState('theme', light);
@@ -24,14 +25,16 @@ const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Router>
-                <AuthProvider>
-                    <Header toggleTheme={toggleTheme} />
-                    <Routes />
-                </AuthProvider>
-                <GlobalStyles />
-                <ToastContainer />
-            </Router>
+            <SummaryProvider>
+                <Router>
+                    <AuthProvider>
+                        <Header toggleTheme={toggleTheme} />
+                        <Routes />
+                    </AuthProvider>
+                    <GlobalStyles />
+                    <ToastContainer />
+                </Router>
+            </SummaryProvider>
         </ThemeProvider>
     );
 }

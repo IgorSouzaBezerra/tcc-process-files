@@ -13,7 +13,7 @@ import  { valitionSchema } from './validation';
 
 import { css } from "@emotion/core";
 
-import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/useAuth';
 
 import api from '../../services/api';
 

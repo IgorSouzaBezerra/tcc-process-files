@@ -13,7 +13,7 @@ import Button from '../../components/Button';
 
 import { Container, ImgDiv, Form } from './styles';
 
-import { useAuth } from '../../context/auth';
+import { useAuth } from '../../context/useAuth';
 
 const SignIn = () => {
     const[loading, setLoading] = useState(false);
