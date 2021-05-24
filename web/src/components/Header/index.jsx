@@ -6,6 +6,8 @@ import { BsMoon } from 'react-icons/bs';
 import { IoSunny } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
+import Menu from '../Menu';
+
 import { Container, Options, SwitchOptions } from './styles';
 
 import { useAuth } from '../../context/useAuth';
@@ -33,12 +35,15 @@ const Header = ({ toggleTheme }) => {
                 />
             </SwitchOptions>
             { user &&
-                <Options>
-                    <Link to={`/myprofile/${user.id}`} >
-                        <img src={Avatar} alt="avatar" />
-                        <span>{user.name}</span>
-                    </Link>
-                </ Options>
+                <>
+                    <Menu />
+                    <Options>
+                        <Link to={`/myprofile/${user.id}`} >
+                            <img src={Avatar} alt="avatar" />
+                            <span>{user.name}</span>
+                        </Link>
+                    </ Options>
+                </>
             }
         </Container>
     );

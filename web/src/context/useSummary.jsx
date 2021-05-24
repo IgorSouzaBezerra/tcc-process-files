@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useCallback, useContext, useEffect, useState } from "react"
 import api from "../services/api";
 
 const SummaryContext = createContext({});
@@ -8,8 +8,7 @@ export const SummaryProvider = ({ children }) => {
   const[finalized, setFinalized] = useState(0);
   const[jobs, setJobs] = useState(0);
 
-
-  useEffect(() => {
+  const loadSummary = useCallback(() => {
     api.get(`Process/getPending`)
     .then(response => setPendings(response.data.length));
 
@@ -20,8 +19,12 @@ export const SummaryProvider = ({ children }) => {
     .then(response => setJobs(response.data));
   }, []);
 
+  useEffect(() => {
+    loadSummary();
+  }, [loadSummary]);
+  
   return (
-    <SummaryContext.Provider value={{ pendings, finalized, jobs }}>
+    <SummaryContext.Provider value={{ loadSummary, pendings, finalized, jobs }}>
       {children}
     </SummaryContext.Provider>
   )
