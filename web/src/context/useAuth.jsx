@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
             sessionStorage.setItem('@USER', JSON.stringify(response.data));
 
-            loadSummary();
+            await loadSummary();
         } catch(err) {
             if (err.response?.data)
                 Error(err.response.data);

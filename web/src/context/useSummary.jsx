@@ -8,14 +8,14 @@ export const SummaryProvider = ({ children }) => {
   const[finalized, setFinalized] = useState(0);
   const[jobs, setJobs] = useState(0);
 
-  const loadSummary = useCallback(() => {
-    api.get(`Process/getPending`)
+  const loadSummary = useCallback(async () => {
+    await api.get(`Process/getPending`)
     .then(response => setPendings(response.data.length));
 
-    api.get(`Process/getFinished`)
+    await api.get(`Process/getFinished`)
     .then(response => setFinalized(response.data.length))
 
-    api.get(`JobEvent/getQtdJob`)
+    await api.get(`JobEvent/getQtdJob`)
     .then(response => setJobs(response.data));
   }, []);
 
