@@ -1,34 +1,15 @@
-import React, { useState } from 'react';
-import { css } from "@emotion/core";
-import ClipLoader from 'react-spinners/ClipLoader';
+import React from 'react';
 
 import { Container, Chart } from './styles';
 
 import Summary from '../../components/Summary';
-import { Error } from '../../utils/toast';
 
 import { Pie } from 'react-chartjs-2';
 
 import { useSummary } from '../../context/useSummary';
 
-const cssspinner = css`
-  display: block;
-  margin: 0 auto;
-  margin-top: 100px;
-`;
-
 const Dash = () => {
-    const[loading, setLoading] = useState(false);
-    const { pendings, finalized, loadSummary } = useSummary();
-
-    try {
-      setLoading(true);
-      loadSummary();
-    } catch {
-      Error('Falha ao carregar Summario!');
-    } finally { 
-      setLoading(false);
-    }
+    const { pendings, finalized} = useSummary();
 
     const data = {
         labels: ['Atividades Pendentes', 'Atividades Concluídas'],
@@ -51,22 +32,16 @@ const Dash = () => {
 
     return (
       <>
-        {loading ? (
-          <>
-            <Summary />
-            <Container>
-              {pendings || finalized ? (
-                <Chart>
-                    <Pie data={data} />
-                </Chart>
-              ) : 
-                null
-              } 
-            </Container>
-          </>
-        ) : (
-          <ClipLoader css={cssspinner} />
-        )}
+        <Summary />
+        <Container>
+          {pendings || finalized ? (
+            <Chart>
+                <Pie data={data} />
+            </Chart>
+          ) : 
+            null
+          } 
+        </Container>
       </>
     );
 }
