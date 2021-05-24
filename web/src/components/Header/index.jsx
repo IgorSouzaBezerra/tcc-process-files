@@ -30,7 +30,8 @@ const Header = ({ toggleTheme }) => {
                     height={10}
                     width={40}
                     handleDiameter={20}
-                    offColor={shade(0.1, colors.primary)}
+                    offHandleColor={colors.secundary}
+                    offColor="#D3D3D3"
                     onColor={colors.secundary}
                 />
             </SwitchOptions>
