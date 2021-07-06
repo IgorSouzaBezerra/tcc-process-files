@@ -12,15 +12,28 @@ export const Container = styled.div`
     justify-content: space-between;
 `;
 
-export const Button = styled.button`
-    background: #3498db;
+export const ButtonAprovar = styled.button`
+    background: #07BC0C;
     height: 30px;
     border-radius: 2px;
     color: #FFFAFA;
     border: 0;
-    margin-right: 20px;
     padding: 5px;
+    margin-right: 20px;
     &:hover {
-        background: ${shade(0.2, '#3498db')};
+        background: ${shade(0.2, '#07BC0C')};
+    }
+`;
+
+export const ButtonReprovar = styled.button`
+    background: #E74C3C;
+    height: 30px;
+    border-radius: 2px;
+    color: #FFFAFA;
+    border: 0;
+    padding: 5px;
+    margin-left: 20px;
+    &:hover {
+        background: ${shade(0.2, '#E74C3C')};
     }
 `;

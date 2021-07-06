@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { Container, Button } from './styles';
+import { Container, ButtonAprovar, ButtonReprovar } from './styles';
 import { Sucess } from '../../utils/toast';
 
 const ProcessOptions = ({ uid }) => {
@@ -16,8 +16,8 @@ const ProcessOptions = ({ uid }) => {
 
     return (
         <Container>
-            <div />
-            <Button onClick={() => handleProcess()}>Enviar</Button>
+            <ButtonReprovar onClick={() => handleProcess()}>Rejeitar</ButtonReprovar>
+            <ButtonAprovar onClick={() => handleProcess()}>Aprovar</ButtonAprovar>
         </Container>
     )
 }
