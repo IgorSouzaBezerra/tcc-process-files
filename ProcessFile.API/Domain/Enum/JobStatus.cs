@@ -4,6 +4,7 @@
     {
         Running,
         Error,
+        Warning,
         Finished
     }
 }
